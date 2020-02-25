@@ -5,7 +5,7 @@ Content-Type: application/json
 {
   "firstName": "hahahai",
   "lastName": "top1",
-  "age": 26
+  "age": ''
 }
 
 ### 测试查询用户列表接口

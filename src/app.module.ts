@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { UserModule } from './module/user/user.module'
 import { ConnectionOptions } from 'typeorm'
 import { DatabaseConf } from './config'
+import { APP_PIPE } from '@nestjs/core'
+import { ValidationPipe } from './pipe/validation.pipe'
 
 @Module({
   imports: [
@@ -10,6 +12,11 @@ import { DatabaseConf } from './config'
     UserModule
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe
+    }
+  ],
 })
 export class AppModule {}
