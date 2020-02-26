@@ -31,7 +31,7 @@ export class ValidationPipe implements PipeTransform<any> {
     const result = []
     errors.map(errObj => {
       const errDescObj = errObj.constraints
-      Object.keys(errDescObj).map(key => { result.push(errDescObj[key]) })
+      Object.keys(errDescObj).map(key => {result.push(errDescObj[key])})
     })
     return result.join('-')
   }
