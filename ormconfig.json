@@ -6,8 +6,8 @@
   "password": "",
   "database": "jobService",
   "entities": ["./src/module/**/*.entity.ts"],
-  "migrations": ["./src/migration/*.ts"],
+  "migrations": ["./migration/*.ts"],
   "cli": {
-    "migrationsDir": "./src/migration"
+    "migrationsDir": "./migration"
   }
 }
