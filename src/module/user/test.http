@@ -11,3 +11,13 @@ Content-Type: application/json
 
 ### 测试查询用户列表接口
 GET http://localhost:3000/users HTTP/1.1
+
+
+### 测试登录接口
+POST http://localhost:3000/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "loginName": "hotfireeagle@163.com",
+  "password": "666666"
+}

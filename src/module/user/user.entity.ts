@@ -8,7 +8,7 @@ export class UserEntity {
   @Column({length: 10})
   userName: string
 
-  @Column({length: 12})
+  @Column({length: 64})
   password: string
 
   @Column({length: 128})
