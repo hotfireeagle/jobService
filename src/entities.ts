@@ -1,5 +1,5 @@
-import { UserEntity } from './module/user/user.entity'
+import { User } from './module/user/user.entity'
 
 export const entity = [
-  UserEntity
+  User
 ]

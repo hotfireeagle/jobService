@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { UserEntity } from './user.entity'
+import { User } from './user.entity'
 import { SHA256 } from 'crypto-js'
 import { JwtService } from '@nestjs/jwt'
 import { SUCCED_STATUS, ERROR_STATUS } from '../../constant'
@@ -10,15 +10,15 @@ import { SUCCED_STATUS, ERROR_STATUS } from '../../constant'
 export class UserService {
 
   constructor(
-    @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
   ) {}
 
   /**
    * 查找所有用户
    */
-  findAll(): Promise<UserEntity[]> {
+  findAll(): Promise<User[]> {
     return this.userRepository.find()
   }
 
@@ -26,7 +26,7 @@ export class UserService {
    * 根据指定信息进行用户查找
    * @param options : [object Object]，能够唯一标识用户的数据
    */
-  findOne(options): Promise<UserEntity> {
+  findOne(options): Promise<User> {
     return this.userRepository.findOne(options)
   }
 
@@ -42,7 +42,7 @@ export class UserService {
    * 进行用户创建
    * @param userObj : 用户数据
    */
-  async createUserDO(userObj): Promise<UserEntity> {
+  async createUserDO(userObj): Promise<User> {
     userObj.password = SHA256(userObj.password).toString()
     return this.userRepository.save(userObj)
   }
