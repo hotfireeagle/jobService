@@ -11,8 +11,7 @@ Content-Type: application/json
 
 ### 测试查询用户列表接口
 GET http://localhost:3000/users HTTP/1.1
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhvdGZpcmVlYWdsZUAxNjMuY29tIiwic3ViIjoxLCJpYXQiOjE1ODI5NTI2MTksImV4cCI6MTU4Mjk1MjY0OX0.ibUQnIxtTHA-k8U2gHX4Vp7QjHV9u5kdTZnzR8jvJsY
-
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhvdGZpcmVlYWdsZUAxNjMuY29tIiwic3ViIjoxLCJpYXQiOjE1ODMwMzkyNDAsImV4cCI6MTU4MzAzOTI3MH0.ihBP5M4p5EuH5tVFs7tWiBYShjx7Me4pMiA5h-FeapU
 
 ### 测试登录接口
 POST http://localhost:3000/users/login HTTP/1.1

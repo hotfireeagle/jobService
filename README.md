@@ -17,10 +17,11 @@
 - [x] 对前端所传参数做校验
 - [x] 参数校验所报的错误格式化一下
 - [x] 错误提示应该简洁明了，使得非技术人员操作起来也能够一眼看懂
-- [ ] 用户表重新设计一下，并且后续需要引入jwt
+- [x] 用户表重新设计一下，并且后续需要引入jwt
 - [x] user表迁移
 - [x] 由于在表的时候用到了typeorm的json配置，那么之前的config.ts文件中的数据库配置进行一个修改避免存在两处配置数据
 - [x] 既然数据库的有些字段有长度限制，那么在参数校验这一环应该增加长度校验（耗时？）
+- [ ] 注册流程多加一些校验逻辑
 
 ### 4.表迁移
 
@@ -31,3 +32,7 @@
 + 3.编写迁移逻辑，可以参看[该链接](https://typeorm.io/#/migrations)
 + 4.执行迁移使用命令:　ts-node ./node_modules/typeorm/cli.js migration:run（如果是ts的话），如果是js项目的话，那么直接使用typeorm migration:run即可.
 + 5.执行回退操作: ts-node ./node_modules/typeorm/cli.js migration:revert
+
+### 5.测试
+
+- [ ] 服务停了，token是否会失效？（按理说不会对吧）

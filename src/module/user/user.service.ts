@@ -31,6 +31,22 @@ export class UserService {
   }
 
   /**
+   * 根据id来查找用户
+   * @param id 
+   */
+  async findUserByIds(ids): Promise<any> {
+    const result = await this.userRepository.findByIds(ids)
+    if (result && result.length) {
+      return {
+        id: result[0].id,
+        email: result[0].email
+      }
+    } else {
+      return null
+    }
+  }
+
+  /**
    * 删除指定用户
    * @param id : 用户ID
    */
