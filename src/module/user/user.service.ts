@@ -55,12 +55,15 @@ export class UserService {
   }
 
   /**
-   * 进行用户创建
+   * 进行用户创建，这里也做一个检查，因为单纯依靠前端来实现是不可靠的
    * @param userObj : 用户数据
    */
-  async createUserDO(userObj): Promise<User> {
+  async createUserDO(userObj): Promise<any> {
+    if (await this.findOne({ userName: userObj.userName })) return { status: ERROR_STATUS, message: '该用户名已被占用' }
+    if (await this.findOne({ email: userObj.email })) return { status: ERROR_STATUS, message: '该邮箱已被占用' }
     userObj.password = SHA256(userObj.password).toString()
-    return this.userRepository.save(userObj)
+    await this.userRepository.save(userObj)
+    return { status: SUCCED_STATUS, message: '注册成功' }
   }
 
   /**
