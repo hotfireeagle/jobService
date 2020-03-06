@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, UseGuards, Param } from '@nestjs/common'
 import { UserService } from './user.service'
 import { CreateUserDto, LoginUserDto } from './user.dto'
 import { JwtAuthGuard } from '../../guard/auth.guard'
-import { decode } from 'punycode'
 
 @Controller('users')
 export class UserController {
