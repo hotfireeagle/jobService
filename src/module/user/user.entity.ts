@@ -5,7 +5,7 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column({length: 10})
+  @Column({ length: 10 })
   userName: string
 
   @Column({length: 64})
@@ -13,7 +13,4 @@ export class User {
 
   @Column({length: 128})
   email: string
-
-  @Column({length: 8})
-  verifyCode: string
 }
