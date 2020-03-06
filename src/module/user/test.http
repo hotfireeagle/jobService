@@ -21,3 +21,9 @@ Content-Type: application/json
   "loginName": "hotfireeagle@163.com",
   "password": "666666"
 }
+
+### 测试判断用户名是否已被占用的接口
+GET http://localhost:3000/users/checkNameAvailable/%E4%B8%80%E4%BD%8D%E4%B8%8D%E6%84%BF%E6%84%8F%E9%80%8F%E9%9C%B2%E5%A7%93%E5%90%8D
+
+### 测试判断邮箱是否已被占用的接口
+GET http://localhost:3000/users/checkEmailAvailable/hotfireeagle%40163.com

@@ -59,8 +59,8 @@ export class UserService {
    * @param userObj : 用户数据
    */
   async createUserDO(userObj): Promise<any> {
-    if (await this.findOne({ userName: userObj.userName })) return { status: ERROR_STATUS, message: '该用户名已被占用' }
-    if (await this.findOne({ email: userObj.email })) return { status: ERROR_STATUS, message: '该邮箱已被占用' }
+    if (await this.findOne({ userName: userObj.userName })) return { status: ERROR_STATUS, message: '该用户名已被注册' }
+    if (await this.findOne({ email: userObj.email })) return { status: ERROR_STATUS, message: '该邮箱已被注册' }
     userObj.password = SHA256(userObj.password).toString()
     await this.userRepository.save(userObj)
     return { status: SUCCED_STATUS, message: '注册成功' }
@@ -70,7 +70,7 @@ export class UserService {
    * 用户登录服务
    */
   async userLoginService(user) {
-    const userObj = await this.findOne({email: user.loginName})
+    const userObj = await this.findOne({ email: user.loginName })
     if (userObj) {
       const pwdSaved = userObj.password
       if (SHA256(user.password).toString() === pwdSaved) {
@@ -83,4 +83,22 @@ export class UserService {
     }
   }
 
+  /**
+   * 判断用户名是否已被占用
+   */
+  async isNameExistService(name) {
+    const user = await this.findOne({ userName: name })
+    if (user) return { status: ERROR_STATUS, message: '该用户名已被注册' }
+    else return { status: SUCCED_STATUS, message: '未占用' }
+  }
+
+
+  /**
+   * 判断邮箱是否已被占用
+   */
+  async isEmailExistService(email) {
+    const user = await this.findOne({ email })
+    if (user) return { status: ERROR_STATUS, message: '该邮箱已被注册' }
+    else return { status: SUCCED_STATUS, message: '未占用' }
+  }
 }
