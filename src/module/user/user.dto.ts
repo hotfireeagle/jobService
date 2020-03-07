@@ -16,7 +16,7 @@ export class CreateUserDto {
 
   @IsEmail()
   @MinLength(3, {message: '邮箱长度至少为3位'})
-  @MaxLength(128, {message: '邮箱长度至少为128位'})
+  @MaxLength(128, {message: '邮箱长度最多为128位'})
   email: string
 
   @IsString({message: '验证码必须为字符串'})

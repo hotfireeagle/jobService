@@ -1,0 +1,7 @@
+### 测试利用邮箱帐号获取验证码的接口
+POST http://localhost:3000/email/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "hotfireeagle@163.com"
+}

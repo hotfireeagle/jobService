@@ -5,11 +5,13 @@ import { ConnectionOptions } from 'typeorm'
 import { DatabaseConf } from './config'
 import { APP_PIPE } from '@nestjs/core'
 import { ValidationPipe } from './pipe/validation.pipe'
+import { EmailModule } from './module/email/email.module'
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(DatabaseConf as ConnectionOptions),
-    UserModule
+    UserModule,
+    EmailModule
   ],
   controllers: [],
   providers: [

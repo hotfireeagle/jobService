@@ -1,8 +1,10 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm'
+import { Entity, PrimaryColumn, Column, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
 export class Email {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
+  id: number
+
   @Column({ length: 128 })
   email: string                     // 邮箱帐号
 
@@ -10,10 +12,7 @@ export class Email {
   code: string                      // 验证码
 
   @Column()
-  lastSendTime: number              // 最近一次验证码所发出去的时间
-
-  @Column()
-  firstSendTime: number             // 第一次验证码所发出去的时间
+  lastSendTime: Date                // 最近一次验证码所发出去的时间
 
   @Column()
   count: number                     // 当天发送的次数
