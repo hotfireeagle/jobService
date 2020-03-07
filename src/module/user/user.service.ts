@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { User } from './user.entity'
+import { Email } from '../email/email.entity'
 import { SHA256 } from 'crypto-js'
 import { JwtService } from '@nestjs/jwt'
 import { SUCCED_STATUS, ERROR_STATUS } from '../../constant'
@@ -12,6 +13,8 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(Email)
+    private readonly emailRepository: Repository<Email>,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -61,6 +64,9 @@ export class UserService {
   async createUserDO(userObj): Promise<any> {
     if (await this.findOne({ userName: userObj.userName })) return { status: ERROR_STATUS, message: '该用户名已被注册' }
     if (await this.findOne({ email: userObj.email })) return { status: ERROR_STATUS, message: '该邮箱已被注册' }
+    const codeObjByEmail = await this.emailRepository.findOne({ email: userObj.email })
+    if (!codeObjByEmail) return { status: ERROR_STATUS, message: '请先获取验证码' }
+    if (codeObjByEmail.code !== userObj.code) return { status: ERROR_STATUS, message: '验证码不正确' }
     userObj.password = SHA256(userObj.password).toString()
     await this.userRepository.save(userObj)
     return { status: SUCCED_STATUS, message: '注册成功' }

@@ -1,4 +1,4 @@
-import { IsString, MinLength, MaxLength, IsEmail　} from 'class-validator'
+import { IsString, MinLength, MaxLength, IsEmail, Length　} from 'class-validator'
 
 /**
  * 创建用户的数据定义
@@ -20,7 +20,8 @@ export class CreateUserDto {
   email: string
 
   @IsString({message: '验证码必须为字符串'})
-  verifyCode: string
+  @Length(6)
+  code: string
 }
 
 /**
